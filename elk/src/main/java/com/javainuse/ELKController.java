@@ -1,34 +1,29 @@
 package com.javainuse;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONArray;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
 @RestController
+@RequiredArgsConstructor
+@Slf4j
 class ELKController {
-	private static final Logger LOG = Logger.getLogger(ELKController.class.getName());
+	private final ELKService service;
 
-	@Autowired
-	RestTemplate restTemplete;
+	private final RestService restService;
 
-	@Bean
-	RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-
-	@RequestMapping(value = "/elk")
+	@GetMapping(value = "/hello")
 	public String helloWorld() {
-		String response = "Welcome to javainuse" + new Date();
-		LOG.log(Level.INFO, response);
-
+		log.info("Inside Hello World Function");
+		String response = "Hello World! " + new Date();
+		log.info("Response => {}", response);
 		return response;
 	}
 
@@ -39,17 +34,24 @@ class ELKController {
 			throw new Exception("Opps Exception raised....");
 		} catch (Exception e) {
 			e.printStackTrace();
-			LOG.error(e);
+			log.error(String.valueOf(e));
 
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
 			e.printStackTrace(pw);
 			String stackTrace = sw.toString();
-			LOG.error("Exception - " + stackTrace);
+			log.error("Exception - " + stackTrace);
 			response = stackTrace;
 		}
 
 		return response;
+	}
+
+
+	@GetMapping(value = "/Food-Details")
+	public JSONArray foodDetails() {
+		log.info("Inside Food Detail Function");
+		return service.getAllFoodDetails();
 	}
 	
 }
