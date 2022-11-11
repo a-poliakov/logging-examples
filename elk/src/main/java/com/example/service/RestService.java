@@ -1,4 +1,4 @@
-package com.javainuse;
+package com.example.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

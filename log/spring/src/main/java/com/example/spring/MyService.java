@@ -1,4 +1,4 @@
-package ru.otus.spring;
+package com.example.spring;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

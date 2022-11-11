@@ -1,4 +1,4 @@
-package com.javainuse;
+package com.example.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
@@ -17,6 +17,7 @@ import java.nio.charset.StandardCharsets;
 @Service
 @Slf4j
 public class ELKService {
+    private static final Logger log = LoggerFactory.getLogger(ELKService.class);
 
     public JSONArray getAllFoodDetails(){
         log.info("Fetching ALL food details...");

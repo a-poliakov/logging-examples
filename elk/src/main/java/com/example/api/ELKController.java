@@ -1,20 +1,25 @@
-package com.javainuse;
+package com.example.api;
 
+import com.example.service.ELKService;
+import com.example.service.RestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
 
 @RestController
+@RequestMapping(value = "/api")
 @RequiredArgsConstructor
-@Slf4j
 class ELKController {
+	private static final Logger log = LoggerFactory.getLogger(ELKController.class);
 	private final ELKService service;
 
 	private final RestService restService;
