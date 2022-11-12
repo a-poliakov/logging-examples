@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 @SpringBootApplication
 @EnableZipkinServer
 public class ZipkinServerApplication {
-	Logger logger = LoggerFactory
 
 	public static void main(String[] args) {
 		SpringApplication.run(ZipkinServerApplication.class, args);
